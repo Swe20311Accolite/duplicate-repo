@@ -1,0 +1,14 @@
+pipeline {
+    agent any 
+
+    environment {
+        MY_CONFIG = credentials('flattenconfig')
+    }
+    stages {
+        stage('deploy') {
+            steps {
+                sh 'kubectl --kubeconfig $MY_CONFIG get pods'
+            }
+        }
+    }
+}
