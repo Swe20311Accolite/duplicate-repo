@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh 'mkdir repo'
         dir(path: 'repo') {
-          git(url: 'https://github.com/Swe20311Accolite/cluster-repo.git', branch: 'main')
+          git(url: 'https://github.com/Swe20311Accolite/cluster-repo.git', branch: 'main,dev')
         }
 
       }
