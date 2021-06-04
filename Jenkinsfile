@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: ['main','dev'], description: '', name: 'branch')])])
+//properties([parameters([choice(choices: ['main','dev'], description: '', name: 'branch')])])
 pipeline {
   agent any
   stages {
@@ -6,7 +6,7 @@ pipeline {
       steps {
         sh 'mkdir repo'
         dir(path: 'repo') {
-          git(url: 'https://github.com/Swe20311Accolite/cluster-repo.git', branch: '${params.branch}')
+          git(url: 'https://github.com/Swe20311Accolite/cluster-repo.git')
         }
 
       }
