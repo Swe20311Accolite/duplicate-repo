@@ -1,12 +1,27 @@
-//properties([parameters([choice(choices: ['main','dev'], description: '', name: 'branch')])])
 pipeline {
   agent any
   stages {
     stage('checkout-repo') {
-      steps {
-        sh 'mkdir repo'
-        dir(path: 'repo') {
-          git(url: 'https://github.com/Swe20311Accolite/cluster-repo.git')
+      parallel {
+        stage('checkout-repo1') {
+          agent any
+          steps {
+            sh 'mkdir repo'
+            dir(path: 'repo') {
+              git(url: 'https://github.com/Swe20311Accolite/cluster-repo.git', branch: 'main')
+            }
+
+          }
+        }
+
+        stage('checkout-repo') {
+          steps {
+            sh 'mkdir repo1'
+            dir(path: 'repo1') {
+              git(url: 'https://github.com/Swe20311Accolite/cluster-repo.git', branch: 'dev')
+            }
+
+          }
         }
 
       }
