@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+    stages {
+        stage('clean-workspace'){
+            cleanWs()
+        }
+        stage('test'){
+        sh 'echo ${params.branch}'
+        sh 'cat kkpod.yaml'
+    }
+}
