@@ -8,7 +8,7 @@ pipeline {
         }
         stage('test'){
             steps{
-                sh 'echo 'Hello''
+                sh 'echo "hello"'
                 sh 'cat kkpod.yaml'
             }
         }
