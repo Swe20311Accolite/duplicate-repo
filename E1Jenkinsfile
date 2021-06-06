@@ -8,7 +8,7 @@ pipeline {
         }
         stage('test'){
             steps{
-                sh 'echo ${params.branch}'
+                sh 'echo 'Hello'
                 sh 'cat kkpod.yaml'
             }
         }
