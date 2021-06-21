@@ -18,7 +18,9 @@ pipeline {
             }
         }
         stage('testing'){
-            sh 'echo ${version}'
+            steps {
+                sh 'echo ${version}'
+            }
         }
         
     }
