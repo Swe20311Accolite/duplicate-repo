@@ -12,7 +12,7 @@ pipeline{
         stage('test'){
             steps{
                 sh 'ls -la'
-                sh 'echo "${branch}"
+                sh 'echo "${branch}" '
             }
         }
     }
