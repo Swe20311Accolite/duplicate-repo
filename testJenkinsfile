@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+    environment{
+        branch = "${params.branch}
+    }
+    stages{
+        stage('checkout'){
+            steps{
+                git(url:"https://github.com/Swe20311Accolite/cluster-repo.git",branch:"dev")
+            }
+        }
+        stage('test'){
+            steps{
+                sh 'ls -la'
+                sh 'echo "${branch}"
+            }
+        }
+    }
+}
