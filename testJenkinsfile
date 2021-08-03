@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        branch = "${params.branch}
+        branch = "${params.branch}"
     }
     stages{
         stage('checkout'){
