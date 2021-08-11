@@ -6,6 +6,7 @@ pipeline{
     stages{
         stage('clean workspace'){
             steps{
+                sh 'sleep 10'
                 cleanWs()
             }
         }
@@ -16,6 +17,7 @@ pipeline{
         }
         stage('test'){
             steps{
+                sh 'sleep 10'
                 sh 'ls -la'
                 sh 'echo "${branch}" '
             }
