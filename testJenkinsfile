@@ -4,6 +4,11 @@ pipeline{
         branch = "${params.branch}"
     }
     stages{
+        stage('clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
         stage('checkout'){
             steps{
                 git(url:"https://github.com/Swe20311Accolite/cluster-repo.git",branch:"dev")
