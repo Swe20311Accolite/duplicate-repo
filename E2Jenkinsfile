@@ -39,10 +39,7 @@ current-context: minikube
 kind: Config
 preferences: {}
 users:
-- name: minikube
-  user:
-    client-certificate: ${CA_SECRET_1}
-    client-key: ${CA_SECRET_2}'''
+- name: minikube'''
             }
             }
         }
