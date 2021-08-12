@@ -1,12 +1,52 @@
 pipeline {
     agent any 
     environment {
-        MY_CONFIG = credentials('b9527f91-e186-42ce-84af-0e3d530ae39f')
+        //MY_CONFIG = credentials('b9527f91-e186-42ce-84af-0e3d530ae39f')
+        CA_SECRET = credentials('CA_SECRET')
+        CA_SECRET_1 = credentials('CA_SECRET_1')
+        CA_SECRET_2 = credentials('CA_SECRET_2')
     }
     stages {
         stage('deploy') {
             steps {
-                sh 'kubectl --kubeconfig $MY_CONFIG get pods'
+                //sh 'kubectl --kubeconfig $MY_CONFIG get pods'
+            }
+        }
+        stage('write config file'){
+            steps{
+                writeFile file: 'config', text: '''
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: ${CA_SECRET}
+    extensions:
+    - extension:
+        last-update: Thu, 12 Aug 2021 14:06:39 IST
+        provider: minikube.sigs.k8s.io
+        version: v1.20.0
+      name: cluster_info
+    server: https://192.168.49.2:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Thu, 12 Aug 2021 14:06:39 IST
+        provider: minikube.sigs.k8s.io
+        version: v1.20.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: ${CA_SECRET_1}
+    client-key: ${CA_SECRET_2}'''
             }
         }
         stage('test') {
@@ -19,6 +59,10 @@ pipeline {
         }
         stage('testing'){
             steps {
+                sh '''
+                export KUBECONFIG=config
+                kubectl get pods
+                '''
                 sh 'echo ${version}'
             }
         }
