@@ -10,12 +10,12 @@ pipeline {
         stage('deploy') {
             steps {
                 //sh 'kubectl --kubeconfig $MY_CONFIG get pods'
-                sh 'echo "ss" '
+                sh 'echo "starting the pipeline" '
             }
         }
         stage('write config file'){
             steps{
-cat <<EOF >> config
+                writeFile file: 'config', text: '''
 apiVersion: v1
 clusters:
 - cluster:
@@ -47,8 +47,7 @@ users:
 - name: minikube
   user:
     client-certificate: ${CA_SECRET_1}
-    client-key: ${CA_SECRET_2}
-EOF
+    client-key: ${CA_SECRET_2}'''
             }
         }
         stage('test') {
