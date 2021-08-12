@@ -20,7 +20,7 @@ pipeline{
                 sh 'sleep 10'
                 sh 'ls -la'
                 sh 'echo "${branch}" '
-                wrtiteFile file: 'test.sh' , text ''' echo "came into file"
+                writeFile file: 'test.sh' , text ''' echo "came into file"
  ls -la'''
                 sh '''
                 ls
