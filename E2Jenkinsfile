@@ -10,6 +10,7 @@ pipeline {
         stage('deploy') {
             steps {
                 //sh 'kubectl --kubeconfig $MY_CONFIG get pods'
+                sh 'echo "starting the pipeline" '
             }
         }
         stage('write config file'){
