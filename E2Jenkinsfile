@@ -15,7 +15,7 @@ pipeline {
         }
         stage('write config file'){
             steps{
-tee config << EOF
+cat <<EOF >> config
 apiVersion: v1
 clusters:
 - cluster:
