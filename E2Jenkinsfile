@@ -2,9 +2,9 @@ pipeline {
     agent any 
     environment {
         //MY_CONFIG = credentials('b9527f91-e186-42ce-84af-0e3d530ae39f')
-        CA_SECRET = credentials('CA_SECRET')
-        CA_SECRET_1 = credentials('CA_SECRET_1')
-        CA_SECRET_2 = credentials('CA_SECRET_2')
+        //CA_SECRET = credentials('CA_SECRET')
+        //CA_SECRET_1 = credentials('CA_SECRET_1')
+        //CA_SECRET_2 = credentials('CA_SECRET_2')
     }
     stages {
         stage('deploy') {
