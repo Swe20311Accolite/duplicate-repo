@@ -14,8 +14,9 @@ pipeline {
             }
         }
         stage('write config file'){
-            withCredentials([string(credentialsId: 'CA_SECRET', variable: 'CA_SECRET'),string(credentialsId: 'CA_SECRET_1', variable: 'CA_SECRET_1'),string(credentialsId: 'CA_SECRET_2', variable: 'CA_SECRET_2')]) {
             steps{
+            withCredentials([string(credentialsId: 'CA_SECRET', variable: 'CA_SECRET'),string(credentialsId: 'CA_SECRET_1', variable: 'CA_SECRET_1'),string(credentialsId: 'CA_SECRET_2', variable: 'CA_SECRET_2')]) {
+            
                 writeFile file: 'config', text: '''
 apiVersion: v1
 clusters:
