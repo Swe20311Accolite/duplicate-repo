@@ -10,10 +10,11 @@ pipeline {
         stage('deploy') {
             steps {
                 //sh 'kubectl --kubeconfig $MY_CONFIG get pods'
-                sh 'echo "starting the pipeline" '
+                sh 'echo "ss" '
             }
         }
         stage('write config file'){
+            withCredentials([string(credentialsId: 'CA_SECRET', variable: 'CA_SECRET'),string(credentialsId: 'CA_SECRET_1', variable: 'CA_SECRET_1'),string(credentialsId: 'CA_SECRET_2', variable: 'CA_SECRET_2')]) {
             steps{
                 writeFile file: 'config', text: '''
 apiVersion: v1
@@ -44,7 +45,11 @@ current-context: minikube
 kind: Config
 preferences: {}
 users:
-- name: minikube'''
+- name: minikube
+  user:
+    client-certificate: ${CA_SECRET_1}
+    client-key: ${CA_SECRET_2}'''
+            }
             }
         }
         stage('test') {
