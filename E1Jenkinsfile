@@ -10,6 +10,7 @@ pipeline {
             steps{
                 sh 'echo "hello"'
                 sh 'cat kkpod.yaml'
+                sh 'echo "add" '
             }
         }
     }
