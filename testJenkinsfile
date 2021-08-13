@@ -24,6 +24,7 @@ pipeline{
 echo "swe" '''
                 sh '''
                 ls
+                cat kkpod.yaml
                 sh groovy1.sh
                 '''
             }
